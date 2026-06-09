@@ -5,11 +5,11 @@ from fastapi import APIRouter, Depends
 from app.mcp.deps import AnalysisDependencies, get_analysis_dependencies
 from app.mcp.registry import TOOLS
 from app.mcp.schemas import MCPRequest, MCPResponse
-from app.schemas.chat import ChatTopicRequest
+from app.schemas.chat import ChatDateListRequest, ChatTopicRequest
 from app.schemas.incident import IncidentRequest
 from app.schemas.security import SecurityRiskRequest
 from app.services.response_formatter import format_mcp_text_result
-from app.tools.chat_analysis import analyze_chat_topics_by_date
+from app.tools.chat_analysis import analyze_chat_topics_by_date, list_chat_dates
 from app.tools.incident_analysis import analyze_incident_last_minutes
 from app.tools.security_analysis import analyze_security_risks
 
@@ -33,6 +33,8 @@ async def mcp_rpc(
     try:
         if name == "analyze_chat_topics":
             result = await analyze_chat_topics_by_date(ChatTopicRequest.model_validate(arguments), deps)
+        elif name == "list_chat_dates":
+            result = await list_chat_dates(ChatDateListRequest.model_validate(arguments), deps)
         elif name == "analyze_incident":
             result = await analyze_incident_last_minutes(IncidentRequest.model_validate(arguments), deps)
         elif name == "analyze_security_risks":

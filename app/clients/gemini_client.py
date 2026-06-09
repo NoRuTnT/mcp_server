@@ -18,16 +18,27 @@ class GeminiClient:
             return self._fallback_summary(payload)
 
         prompt = self._build_prompt(system_prompt, payload)
-        response = await asyncio.to_thread(
-            self._client.models.generate_content,
-            model=self.settings.gemini_model,
-            contents=prompt,
-            config=types.GenerateContentConfig(
-                temperature=0.2,
-                system_instruction=system_prompt,
-            ),
+        last_error: Exception | None = None
+        for attempt in range(3):
+            try:
+                response = await asyncio.to_thread(
+                    self._client.models.generate_content,
+                    model=self.settings.gemini_model,
+                    contents=prompt,
+                    config=types.GenerateContentConfig(
+                        temperature=0.2,
+                    ),
+                )
+                return response.text or ""
+            except Exception as exc:
+                last_error = exc
+                if attempt < 2:
+                    await asyncio.sleep(2**attempt)
+
+        return (
+            "Gemini API is temporarily unavailable, so the server could not generate "
+            f"an AI summary. Error: {last_error}"
         )
-        return response.text or ""
 
     @staticmethod
     def _build_prompt(system_prompt: str, payload: Any) -> str:

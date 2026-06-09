@@ -17,7 +17,6 @@ class Settings(BaseSettings):
     clickhouse_database: str = Field(default="", alias="CLICKHOUSE_DATABASE")
     clickhouse_timeout_seconds: float = Field(default=30.0, alias="CLICKHOUSE_TIMEOUT_SECONDS")
     chat_log_table: str = Field(default="", alias="CHAT_LOG_TABLE")
-    security_log_table: str = Field(default="", alias="SECURITY_LOG_TABLE")
 
     loki_url: str = Field(default="", alias="LOKI_URL")
     loki_timeout_seconds: float = Field(default=30.0, alias="LOKI_TIMEOUT_SECONDS")
@@ -30,6 +29,7 @@ class Settings(BaseSettings):
         default="",
         alias="LOKI_SYSTEM_APPS",
     )
+    loki_security_apps: str = Field(default="", alias="LOKI_SECURITY_APPS")
 
     prometheus_url: str = Field(default="", alias="PROMETHEUS_URL")
     prometheus_timeout_seconds: float = Field(default=30.0, alias="PROMETHEUS_TIMEOUT_SECONDS")
@@ -46,14 +46,6 @@ class Settings(BaseSettings):
     prompt_chat_analysis: str = Field(default="", alias="PROMPT_CHAT_ANALYSIS")
     prompt_incident_analysis: str = Field(default="", alias="PROMPT_INCIDENT_ANALYSIS")
     prompt_security_analysis: str = Field(default="", alias="PROMPT_SECURITY_ANALYSIS")
-
-    mysql_enabled: bool = Field(default=False, alias="MYSQL_ENABLED")
-    mysql_host: str = Field(default="", alias="MYSQL_HOST")
-    mysql_port: int = Field(default=3306, alias="MYSQL_PORT")
-    mysql_user: str = Field(default="", alias="MYSQL_USER")
-    mysql_password: str = Field(default="", alias="MYSQL_PASSWORD")
-    mysql_database: str = Field(default="", alias="MYSQL_DATABASE")
-    mysql_timeout_seconds: int = Field(default=10, alias="MYSQL_TIMEOUT_SECONDS")
 
 
 @lru_cache

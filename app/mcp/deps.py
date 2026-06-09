@@ -3,7 +3,6 @@ from dataclasses import dataclass
 from app.clients.clickhouse import ClickHouseClient
 from app.clients.gemini_client import GeminiClient
 from app.clients.loki import LokiClient
-from app.clients.mysql import MySQLClient
 from app.clients.prometheus import PrometheusClient
 from app.config import Settings, get_settings
 
@@ -15,7 +14,6 @@ class AnalysisDependencies:
     prometheus: PrometheusClient
     loki: LokiClient
     gemini: GeminiClient
-    mysql: MySQLClient
 
 
 def get_analysis_dependencies() -> AnalysisDependencies:
@@ -26,5 +24,4 @@ def get_analysis_dependencies() -> AnalysisDependencies:
         prometheus=PrometheusClient(settings),
         loki=LokiClient(settings),
         gemini=GeminiClient(settings),
-        mysql=MySQLClient(settings),
     )

@@ -12,6 +12,17 @@ TOOLS = [
         },
     },
     {
+        "name": "list_chat_dates",
+        "description": "요약 가능한 디스코드 채팅 로그 날짜 목록을 조회합니다.",
+        "inputSchema": {
+            "type": "object",
+            "properties": {
+                "limit": {"type": "integer", "minimum": 1, "maximum": 365},
+            },
+            "required": [],
+        },
+    },
+    {
         "name": "analyze_incident",
         "description": "최근 N분 동안의 메트릭과 에러 로그를 분석합니다.",
         "inputSchema": {

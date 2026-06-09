@@ -13,7 +13,6 @@ mcp_server/
 |  |  |- clickhouse.py
 |  |  |- gemini_client.py
 |  |  |- loki.py
-|  |  |- mysql.py
 |  |  `- prometheus.py
 |  |- core/
 |  |  |- exceptions.py
@@ -50,12 +49,12 @@ mcp_server/
 
 - 특정 날짜의 Discord 채팅 로그 요약
 - 서버 메트릭과 서비스 메트릭 기반 장애 분석
-- Loki 로그 기반 운영 로그 요약
+- Loki 로그 기반 운영 및 보안 로그 분석
 - MCP `tools/list`, `tools/call` 처리
 
 ## 데이터 소스
 
-- ClickHouse: 채팅 이벤트 및 저장 로그 조회
+- ClickHouse: 채팅 이벤트 조회
 - Prometheus: `job` 라벨 기준 메트릭 조회
 - Loki: `job` 라벨 기준 로그 조회
 - Gemini: 분석 결과 요약
