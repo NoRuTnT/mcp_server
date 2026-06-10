@@ -46,6 +46,7 @@ class Settings(BaseSettings):
     prompt_chat_analysis: str = Field(default="", alias="PROMPT_CHAT_ANALYSIS")
     prompt_incident_analysis: str = Field(default="", alias="PROMPT_INCIDENT_ANALYSIS")
     prompt_security_analysis: str = Field(default="", alias="PROMPT_SECURITY_ANALYSIS")
+    prompt_ops_router: str = Field(default="", alias="PROMPT_OPS_ROUTER")
 
 
 @lru_cache

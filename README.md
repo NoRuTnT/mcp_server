@@ -50,6 +50,7 @@ mcp_server/
 - 특정 날짜의 Discord 채팅 로그 요약
 - 서버 메트릭과 서비스 메트릭 기반 장애 분석
 - Loki 로그 기반 운영 및 보안 로그 분석
+- 운영/보안 자연어 요청 라우팅
 - MCP `tools/list`, `tools/call` 처리
 
 ## 데이터 소스
@@ -68,6 +69,17 @@ mcp_server/
 - Gemini API 키
 - 분석 프롬프트
 
+## 클라이언트 연동
+
+Discord bot, 프론트엔드 관리자 페이지 등 다른 프로젝트에서 MCP 서버를 호출하는 방법은 `docs/mcp-client-integration.md`를 참고합니다.
+
 ## 배포
 
 프로젝트 루트의 `Dockerfile` 기준으로 컨테이너 이미지를 빌드해 배포할 수 있습니다.
+`docker-compose.yml`은 외부 Docker network인 `moonhub-net`에 컨테이너를 연결합니다.
+
+같은 네트워크에 있는 다른 컨테이너는 다음 주소로 MCP 서버를 호출할 수 있습니다.
+
+```text
+http://mcp-server:8000/mcp
+```

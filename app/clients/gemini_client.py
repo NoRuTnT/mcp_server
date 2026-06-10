@@ -18,6 +18,12 @@ class GeminiClient:
             return self._fallback_summary(payload)
 
         prompt = self._build_prompt(system_prompt, payload)
+        return await self.generate_text(prompt)
+
+    async def generate_text(self, prompt: str) -> str:
+        if not self._client:
+            return self._fallback_summary(prompt)
+
         last_error: Exception | None = None
         for attempt in range(3):
             try:

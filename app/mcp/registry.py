@@ -34,6 +34,17 @@ TOOLS = [
         },
     },
     {
+        "name": "analyze_ops_prompt",
+        "description": "운영/보안 관련 자연어 요청을 해석해 적절한 분석 도구를 실행합니다.",
+        "inputSchema": {
+            "type": "object",
+            "properties": {
+                "prompt": {"type": "string", "description": "운영/보안 로그 분석 자연어 요청"},
+            },
+            "required": ["prompt"],
+        },
+    },
+    {
         "name": "analyze_security_risks",
         "description": "최근 N일 동안의 보안 로그 집계를 분석합니다.",
         "inputSchema": {
